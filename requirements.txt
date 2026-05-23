@@ -1,0 +1,5 @@
+flask>=3.0.0
+gunicorn>=21.2.0
+werkzeug>=3.0.0
+flask-limiter>=3.8.0
+bleach>=6.1.0

@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: zormail-render
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --workers 1 --threads 8 --timeout 120
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: ADMIN_PATH
+        sync: false
+      - key: WEBHOOK_SECRET
+        generateValue: true
+      - key: SESSION_COOKIE_SECURE
+        value: "1"
+      - key: DATA_DIR
+        value: /var/data
+    disk:
+      name: zormail-data
+      mountPath: /var/data
+      sizeGB: 1
